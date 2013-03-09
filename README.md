@@ -144,15 +144,15 @@ Tasks
 - [x] Database core functional - Copy File for copying database file from assets folder into device
 - [x] Database core functional - CursorUtil for converting a cursor to specific class
 - [x] Database core functional - ContentValues Util for convert a specific class to ContentValues
-- [ ] Convert record to String array
+- [x] Convert record to String array
 - [ ] Export/Import with json format
 - [ ] Export/Import with XML format
 - [ ] Export/Import with csv format
 - [x] Read all value (SELECT * FROM table_name)
-- [ ] Read value by primary key
-- [ ] Insert
-- [ ] Update
-- [ ] Delete
-- [ ] Delete All
+- [x] Read value by primary key
+- [x] Insert
+- [x] Update
+- [x] Delete
+- [x] Delete All
 - [ ] Read value by criteria
 - [ ] Update value by criteria
