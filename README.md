@@ -145,9 +145,6 @@ Tasks
 - [x] Database core functional - CursorUtil for converting a cursor to specific class
 - [x] Database core functional - ContentValues Util for convert a specific class to ContentValues
 - [x] Convert record to String array
-- [ ] Export/Import with json format
-- [ ] Export/Import with XML format
-- [ ] Export/Import with csv format
 - [x] Read all value (SELECT * FROM table_name)
 - [x] Read value by primary key
 - [x] Insert
