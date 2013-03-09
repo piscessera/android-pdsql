@@ -68,20 +68,6 @@ public class Dsql<T> extends DatabaseCore {
 	// db.close();
 	// return affectedRow;
 	// }
-	//
-	// public List<Account> getAll() {
-	// List<Account> result = new ArrayList<Account>();
-	// openDatabase();
-	// SQLiteDatabase db = getmDb();
-	// Cursor c = db.rawQuery(getSQLAll(), null);
-	// while (c.moveToNext()) {
-	// result.add(getValueByCursor(c));
-	// }
-	// c.close();
-	// db.close();
-	// return result;
-	// }
-	//
 	// public List<Account> getAllWithOutCredit() {
 	// List<Account> result = new ArrayList<Account>();
 	// openDatabase();
