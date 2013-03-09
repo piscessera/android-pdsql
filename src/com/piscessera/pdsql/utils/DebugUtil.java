@@ -5,7 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class DebugUtil {
-	private static final String TAG = "THETN";
+	private static final String TAG = "PDSQL";
 
 	public static void d(String msg) {
 		Log.d(TAG, msg + " with " + System.currentTimeMillis());

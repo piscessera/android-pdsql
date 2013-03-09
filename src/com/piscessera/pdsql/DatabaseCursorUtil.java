@@ -4,26 +4,18 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.piscessera.pdsql.utils.DebugUtil;
-
 import android.database.Cursor;
 
 public class DatabaseCursorUtil<T> extends GenericBase<T> {
 
-	private String className;
-
 	public DatabaseCursorUtil(String className) {
-		super();
-		this.className = className;
+		super(className);
 	}
 
 	public T getValueByCursor(Cursor c) {
 		try {
-			// Create class
-			Class<? extends T> cls = (Class<? extends T>) Class
-					.forName(this.className);
-			// Create instance
-			T d = cls.newInstance();
+			// create instance
+			T d = newInstance();
 
 			// loop all variable in table class
 			for (Field f : d.getClass().getDeclaredFields()) {
@@ -37,9 +29,6 @@ public class DatabaseCursorUtil<T> extends GenericBase<T> {
 
 				// create getter/setter method name
 				String setMethodName = "set" + methodName;
-
-				// create field type class for casting object after invoke
-				String typeClassName = f.getType().toString();
 
 				// create method
 				Method setterMethod = d.getClass().getMethod(setMethodName,
@@ -56,7 +45,6 @@ public class DatabaseCursorUtil<T> extends GenericBase<T> {
 					setterMethod.invoke(d, getString(c, f.getName()));
 				}
 			}
-
 			return d;
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
@@ -66,12 +54,45 @@ public class DatabaseCursorUtil<T> extends GenericBase<T> {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public String[] getArrayByCursor(Cursor c) {
+		T d = newInstance();
+		Field[] fields = d.getClass().getFields();
+		String[] result = new String[fields.length];
+
+		int index = 0;
+		for (Field f : fields) {
+			// set result array value
+			if (int.class == f.getType()) {
+				result[index] = String.valueOf(getInt(c, f.getName()));
+			} else if (float.class == f.getType()) {
+				result[index] = String.valueOf(getFloat(c, f.getName()));
+			} else if (double.class == f.getType()) {
+				result[index] = String.valueOf(getDouble(c, f.getName()));
+			} else if (String.class == f.getType()) {
+				result[index] = String.valueOf(getString(c, f.getName()));
+			}
+			index++;
+		}
+		return result;
+	}
+
+	public String[] getColumnByCursor(Cursor c) {
+		T d = newInstance();
+		Field[] fields = d.getClass().getFields();
+		String[] result = new String[fields.length];
+
+		int index = 0;
+		for (Field f : fields) {
+			// set result array value
+			result[index] = f.getName();
+			index++;
+		}
+
+		return result;
 	}
 
 	public int getInt(Cursor c, String columnName) {

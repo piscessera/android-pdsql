@@ -22,12 +22,15 @@ public class DatabaseCore extends SQLiteOpenHelper {
 
 	private String dbCorePath;
 	private String dbCoreName;
+	@SuppressWarnings("unused")
 	private String dbCoreVersion;
+	@SuppressWarnings("unused")
 	private int version;
 
 	private final Context mContext;
 	private SQLiteDatabase mDb;
 
+	@SuppressWarnings("static-access")
 	public DatabaseCore(Context context, String dbCorePath, String dbCoreName,
 			String dbCoreVersion, int version) {
 		super(context, dbCoreName, null, version);
